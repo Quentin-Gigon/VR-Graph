@@ -19,21 +19,21 @@ public class GraphComponent : MonoBehaviour
         float ew = 0.02f; // set edge width
 
         //declare and initialize 5 nodes
-        var node1 = graph.createDrawableNode(1, 0.5f, 0.5f, 1.5f, Color.red);
-        var node2 = graph.createDrawableNode(2, 0f, 0f, 0.5f, Color.red);
-        var node3 = graph.createDrawableNode(3, 0.7f, -0.7f, 1.7f, Color.red);
-        var node4 = graph.createDrawableNode(4, 0.2f, 0.7f, 0.3f, Color.red);
-        var node5 = graph.createDrawableNode(5, 0.7f, 0.6f, 2f, Color.red);
+        var node1 = graph.createDrawableNode(1, 0.5f, 1.5f, 1.5f, Color.red);
+        var node2 = graph.createDrawableNode(2, 0f, 0f, 1.5f, Color.red);
+        var node3 = graph.createDrawableNode(3, 0.7f, 0.3f, 1.7f, Color.red);
+        var node4 = graph.createDrawableNode(4, 0.2f, 1.7f, 0.3f, Color.red);
+        //var node5 = graph.createDrawableNode(5, 0.7f, 1.6f, 2f, Color.red);
 
         //declare and initialize 5x2 edges (edge must be initialized both ways)
         var edge1 = graph.createDrawableNodeEdge(1.0f, node1, node2, Color.yellow, ew);
         var edge2 = graph.createDrawableNodeEdge(1.0f, node2, node1, Color.yellow, ew);
 
-        var edge3 = graph.createDrawableNodeEdge(1.0f, node3, node4, Color.yellow, ew);
-        var edge4 = graph.createDrawableNodeEdge(1.0f, node4, node3, Color.yellow, ew);
+        var edge3 = graph.createDrawableNodeEdge(1.0f, node2, node3, Color.yellow, ew);
+        var edge4 = graph.createDrawableNodeEdge(1.0f, node3, node2, Color.yellow, ew);
 
-        var edge5 = graph.createDrawableNodeEdge(1.0f, node2, node5, Color.yellow, ew);
-        var edge6 = graph.createDrawableNodeEdge(1.0f, node5, node2, Color.yellow, ew);
+        var edge5 = graph.createDrawableNodeEdge(1.0f, node3, node4, Color.yellow, ew);
+        var edge6 = graph.createDrawableNodeEdge(1.0f, node4, node3, Color.yellow, ew);
 
         var edge7 = graph.createDrawableNodeEdge(1.0f, node1, node4, Color.yellow, ew);
         var edge8 = graph.createDrawableNodeEdge(1.0f, node4, node1, Color.yellow, ew);
@@ -47,7 +47,7 @@ public class GraphComponent : MonoBehaviour
         graph.Nodes.Add(node2);
         graph.Nodes.Add(node3);
         graph.Nodes.Add(node4);
-        graph.Nodes.Add(node5);
+       // graph.Nodes.Add(node5);
 
         //TODO better?
         graph.Edges.Add(edge1);

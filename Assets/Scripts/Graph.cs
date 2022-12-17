@@ -20,7 +20,7 @@ public class Graph<TNodeType,TEdgeType>
 public class DrawableGraph<N, E> : Graph<N, E> where N : Coordinate
 {
 
-    public static float C = 0.1f; // how wide the graph is
+    public static float C = 0.5f; // how wide the graph is
     public static float K = 1.0f; // how elastic the graph is
     public static float T = 0.001f; // how fast does it converge to a stable state
 
@@ -85,6 +85,7 @@ public class DrawableGraph<N, E> : Graph<N, E> where N : Coordinate
     //TODO function to build an edge
     public Edge<float, DrawableNode> createDrawableNodeEdge(float v, Node<DrawableNode> from, Node<DrawableNode> to, Color color, float width)
     {
+        //game object used to generate the line renderer component (must be unique to each node)
         GameObject g1 = new();
         var edge1 = new Edge<float, DrawableNode>()
         {
@@ -134,7 +135,7 @@ public class DrawableNode : Coordinate
     {
         this.obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         this.obj.transform.position = x0;
-        this.obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        this.obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         this.coord = x0;
 
     }
