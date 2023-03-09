@@ -75,7 +75,7 @@ public class DrawableGraph<N, E> : Graph<N, E> where N : Coordinate
     }
 
     //function to build a node
-    public Node<DrawableNode> createDrawableNode(int id, float x, float y, float z, Color color, String s)
+    public Node<DrawableNode> createDrawableNode(int id, float x, float y, float z, Color color, String s, String t)
     {
         var node = new Node<DrawableNode>() { Id = id, Value = new DrawableNode(new Vector3(x, y, z)), NodeColor = color };
         //Nodes.Add(node);
@@ -89,9 +89,21 @@ public class DrawableGraph<N, E> : Graph<N, E> where N : Coordinate
         node.Value.objlabel.anchor = TextAnchor.MiddleCenter;
         node.Value.objlabel.color = Color.red;
         node.Value.objlabel.transform.parent = node.Value.obj.transform;
-        node.Value.objlabel.transform.position = node.Value.obj.transform.position + new Vector3(0, 0.2f, 0);
-        node.Value.objlabel.transform.position = new Vector3(node.Value.objlabel.transform.position.x, node.Value.objlabel.transform.position.y, node.Value.objlabel.transform.position.z);
-        
+        node.Value.objlabel.transform.position = node.Value.obj.transform.position; //+ new Vector3(0, 0.2f, 0);
+
+
+        //add pane with text t
+        node.Value.golab = new GameObject();
+        node.Value.objlabel = node.Value.golab.AddComponent<TextMesh>();
+        node.Value.objlabel.text = t;
+        node.Value.objlabel.characterSize = 0.1f;
+        node.Value.objlabel.alignment = TextAlignment.Center;
+        node.Value.objlabel.anchor = TextAnchor.MiddleCenter;
+        node.Value.objlabel.color = Color.red;
+        node.Value.objlabel.transform.parent = node.Value.obj.transform;
+        node.Value.objlabel.transform.position = node.Value.obj.transform.position + new Vector3(0f, 0.2f, 0);
+
+       
 
         return node;
     }
