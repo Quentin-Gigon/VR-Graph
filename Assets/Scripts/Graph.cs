@@ -75,10 +75,24 @@ public class DrawableGraph<N, E> : Graph<N, E> where N : Coordinate
     }
 
     //function to build a node
-    public Node<DrawableNode> createDrawableNode(int id, float x, float y, float z, Color color)
+    public Node<DrawableNode> createDrawableNode(int id, float x, float y, float z, Color color, String s)
     {
         var node = new Node<DrawableNode>() { Id = id, Value = new DrawableNode(new Vector3(x, y, z)), NodeColor = color };
         //Nodes.Add(node);
+
+        //add label with text s
+        node.Value.golab = new GameObject();
+        node.Value.objlabel = node.Value.golab.AddComponent<TextMesh>();
+        node.Value.objlabel.text = s;
+        node.Value.objlabel.characterSize = 0.1f;
+        node.Value.objlabel.alignment = TextAlignment.Center;
+        node.Value.objlabel.anchor = TextAnchor.MiddleCenter;
+        node.Value.objlabel.color = Color.red;
+        node.Value.objlabel.transform.parent = node.Value.obj.transform;
+        node.Value.objlabel.transform.position = node.Value.obj.transform.position + new Vector3(0, 0.2f, 0);
+        node.Value.objlabel.transform.position = new Vector3(node.Value.objlabel.transform.position.x, node.Value.objlabel.transform.position.y, node.Value.objlabel.transform.position.z);
+        
+
         return node;
     }
 
@@ -137,10 +151,11 @@ public class DrawableNode : Coordinate
         this.obj.transform.position = x0;
         this.obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         this.coord = x0;
-
     }
 
     public GameObject obj { get; set; }
+    public TextMesh objlabel;
+    public GameObject golab;
 }
 
 

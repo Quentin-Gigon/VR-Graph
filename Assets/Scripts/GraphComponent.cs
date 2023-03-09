@@ -1,7 +1,8 @@
-   using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 //[ExecuteInEditMode]
 
@@ -19,10 +20,10 @@ public class GraphComponent : MonoBehaviour
         float ew = 0.02f; // set edge width
 
         //declare and initialize 5 nodes
-        var node1 = graph.createDrawableNode(1, 0.5f, 1.5f, 1.5f, Color.red);
-        var node2 = graph.createDrawableNode(2, 0f, 0f, 1.5f, Color.red);
-        var node3 = graph.createDrawableNode(3, 0.7f, 0.3f, 1.7f, Color.red);
-        var node4 = graph.createDrawableNode(4, 0.2f, 1.7f, 0.3f, Color.red);
+        var node1 = graph.createDrawableNode(1, 0.5f, 1.5f, 1.5f, Color.red, "Node1");
+        var node2 = graph.createDrawableNode(2, 0f, 0f, 1.5f, Color.red, "Node2");
+        var node3 = graph.createDrawableNode(3, 0.7f, 0.3f, 1.7f, Color.red, "Node3");
+        var node4 = graph.createDrawableNode(4, 0.2f, 1.7f, 0.3f, Color.red, "Node4");
         //var node5 = graph.createDrawableNode(5, 0.7f, 1.6f, 2f, Color.red);
 
         //declare and initialize 5x2 edges (edge must be initialized both ways)
@@ -60,7 +61,6 @@ public class GraphComponent : MonoBehaviour
         graph.Edges.Add(edge8);
         graph.Edges.Add(edge9);
         graph.Edges.Add(edge0);
-        
     }
 
     private void Update()
@@ -78,6 +78,10 @@ public class GraphComponent : MonoBehaviour
             {
                 node.Value.obj.transform.position = node.Value.coord;
             }
+
+            //keep text aligned with main camera
+            node.Value.objlabel.transform.LookAt(node.Value.objlabel.transform.position - Camera.main.transform.position);
+
         }
 
         //update the start and endpoint of the edges
